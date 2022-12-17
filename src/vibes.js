@@ -1,8 +1,9 @@
+import './style/main.css'
 import * as THREE from "three";
-import Stats from "three/addons/libs/stats.module.js";
-import { OBJLoader } from "three/addons/loaders/OBJLoader.js";
+import Stats from "three/examples/jsm/libs/stats.module.js";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader.js";
 
-let camera, scene, renderer, object, stats, light, mouseMesh;
+let camera, scene, renderer, object, light, mouseMesh, stats;
 
 const clock = new THREE.Clock();
 
@@ -15,9 +16,9 @@ animate();
 
 function init() {
   var textureLoader = new THREE.TextureLoader();
-  var texture = textureLoader.load(
-    "Z:/assets/3d_models/Facer Character/animations/DEEP MOTION/deepmotionfullbody-short-1080_default/deepmotionfullbody-short-1080_female-normal-dmface(includeTPose).fbm/FaceMap.jpg"
-  );
+  // var texture = textureLoader.load(
+  //  "Z:/assets/3d_models/Facer Character/animations/DEEP MOTION/deepmotionfullbody-short-1080_default/deepmotionfullbody-short-1080_female-normal-dmface(includeTPose).fbm/FaceMap.jpg"
+  // );
   var material = new THREE.MeshBasicMaterial({ map: texture });
   camera = new THREE.PerspectiveCamera(
     50,
@@ -32,7 +33,7 @@ function init() {
   //model
 
   const facer_body = new OBJLoader();
-  facer_body.load("models/obj/glassface_centered_basemesh.obj", function (obj) {
+  facer_body.load("obj/glassface_centered_basemesh.obj", function (obj) {
     object = obj;
     object.scale.multiplyScalar(2);
     object.position.y = -340;
@@ -40,15 +41,15 @@ function init() {
     scene.add(object);
   });
 
-  const hair = new OBJLoader();
-  hair.load("models/obj/1.obj", function (obj) {
-    object = obj;
-    object.scale.multiplyScalar(200);
-    object.position.y = -340;
-    //object.position.x = 100;
-    //object = new THREE.Mesh(object, material);
-    //scene.add(object);
-  });
+  // const hair = new OBJLoader();
+  // hair.load("obj/1.obj", function (obj) {
+  //   object = obj;
+  //   object.scale.multiplyScalar(200);
+  //   object.position.y = -340;
+  //   //object.position.x = 100;
+  //   //object = new THREE.Mesh(object, material);
+  //   //scene.add(object);
+  // });
 
   const sphere = new THREE.SphereGeometry(0.5, 16, 8);
 
@@ -110,6 +111,12 @@ function init() {
 
     renderer.setSize(window.innerWidth, window.innerHeight);
   }
+  geometry = new THREE.BoxGeometry( 1, 1, 1 );
+  material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+  const cube = new THREE.Mesh( geometry, material );
+  scene.add( cube );
+
+
 }
 
 function animate() {

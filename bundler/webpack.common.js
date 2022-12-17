@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  entry: path.resolve(__dirname, "../src/vibes.js"),
+  entry: path.resolve(__dirname, "../src/vibes2.js"),
   output: {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "../dist"),
@@ -12,7 +12,7 @@ module.exports = {
   plugins: [
     new CopyWebpackPlugin([{ from: path.resolve(__dirname, "../static") }]),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "../src/vibes.html"),
+      template: path.resolve(__dirname, "../src/index.html"),
       minify: true,
     }),
   ],
